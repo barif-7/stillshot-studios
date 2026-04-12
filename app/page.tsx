@@ -1,46 +1,60 @@
+import Image, { type StaticImageData } from 'next/image'
 import { ArrowRight, Camera, ChevronRight, Grid3X3, Mail, MoveUpRight, Sparkles } from 'lucide-react'
+
+import heroMain from '../data/instagram/Data/BQ2JaUWgjc3.jpg'
+import heroSupport from '../data/instagram/Data/BQ6Sdb2gEF2.jpg'
+import work1 from '../data/instagram/Data/BQ_VofBg_kz.jpg'
+import work2 from '../data/instagram/Data/BQtQ0ZHA751.jpg'
+import work3 from '../data/instagram/Data/CDf6AFCBiEu.jpg'
+import work4 from '../data/instagram/Data/CTh4HfAl5NO.jpg'
+import aboutPortrait from '../data/instagram/Data/BSrKsPyAkzJ.jpg'
+import credibilityWall from '../data/instagram/Data/BSk2gcvAT3v.jpg'
 
 type WorkItem = {
   title: string
   category: string
   description: string
   tone: string
+  image: StaticImageData
+  alt: string
 }
 
 const featuredWork: WorkItem[] = [
   {
-    title: 'Portrait Studies',
-    category: 'Portraits',
-    description: 'Refined lighting, quiet expression, and a clean composition built around presence.',
-    tone: 'Editorial frames with sculpted contrast and soft shadow detail.',
+    title: 'Tower Geometry',
+    category: 'Architecture',
+    description: 'Low-angle facade work with strong verticals and a crisp editorial finish.',
+    tone: 'Refined structure, clean lines, and controlled contrast.',
+    image: work1,
+    alt: 'Tall modern skyscraper framed against the sky',
   },
   {
-    title: 'City Light Sessions',
-    category: 'Lifestyle',
-    description: 'Natural movement and contemporary styling captured with a cinematic edge.',
-    tone: 'Intentional environments, subtle motion, and luminous color balance.',
+    title: 'Golden Horizon',
+    category: 'Landscapes',
+    description: 'A warm sunset frame that brings atmosphere to the page without feeling heavy.',
+    tone: 'Soft color transitions, reflective light, and a cinematic calm.',
+    image: work2,
+    alt: 'Golden sunset over water with a glowing horizon',
   },
   {
-    title: 'Surface & Form',
-    category: 'Creative Concepts',
-    description: 'Textural stillness and visual tension for campaigns that need a stronger point of view.',
-    tone: 'Minimal set design with elevated negative space and tactile detail.',
+    title: 'Neon Street',
+    category: 'City Nights',
+    description: 'Bright night color and street energy, kept sharp and contemporary.',
+    tone: 'Motion, contrast, and a modern nighttime palette.',
+    image: work3,
+    alt: 'Neon-lit city street at night',
   },
   {
-    title: 'After Hours Coverage',
-    category: 'Events',
-    description: 'Atmosphere-led coverage that preserves the energy of a room without losing polish.',
-    tone: 'Responsive shooting, elegant composition, and a discreet on-site presence.',
+    title: 'Night Canal',
+    category: 'Cityscapes',
+    description: 'Tall buildings and water reflections give the portfolio a more cinematic edge.',
+    tone: 'Layered depth, bright points of light, and a polished urban mood.',
+    image: work4,
+    alt: 'Night canal between tall buildings with reflections on the water',
   },
 ]
 
-const collections = [
-  'Portraits',
-  'Lifestyle',
-  'Editorial',
-  'Events',
-  'Creative Concepts',
-]
+const collections = ['Architecture', 'Cityscapes', 'Editorial', 'Portraits', 'Landscapes']
 
 const services = [
   'Portrait Sessions',
@@ -64,14 +78,35 @@ const principles = [
   'Image sets are curated to feel cohesive across web, social, and print use cases.',
 ]
 
-function PlaceholderFrame({ label }: { label: string }) {
+function MediaFrame({
+  image,
+  alt,
+  label,
+  className = '',
+  priority = false,
+  sizes = '(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw',
+}: {
+  image: StaticImageData
+  alt: string
+  label: string
+  className?: string
+  priority?: boolean
+  sizes?: string
+}) {
   return (
-    <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/10 via-white/5 to-white/[0.02] aspect-[4/5]">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(251,191,36,0.18),transparent_42%),linear-gradient(180deg,rgba(255,255,255,0.04),transparent)]" />
-      <div className="absolute inset-0 flex items-end p-6">
-        <div className="glass rounded-2xl px-4 py-3">
-          <div className="text-xs uppercase tracking-[0.32em] text-white/50">Placeholder image slot</div>
-          <div className="mt-1 text-sm text-white/90">{label}</div>
+    <div className={`group relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] ${className}`}>
+      <Image
+        src={image}
+        alt={alt}
+        fill
+        priority={priority}
+        sizes={sizes}
+        className="object-cover transition duration-700 group-hover:scale-[1.03]"
+      />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.02),rgba(0,0,0,0.42))]" />
+      <div className="absolute inset-x-0 bottom-0 p-5">
+        <div className="glass inline-flex rounded-2xl px-4 py-3 text-xs uppercase tracking-[0.28em] text-white/70">
+          {label}
         </div>
       </div>
     </div>
@@ -93,10 +128,10 @@ export default function Home() {
             </div>
           </div>
           <nav className="hidden items-center gap-6 text-sm text-white/70 md:flex">
-            <a href="#work" className="hover:text-white transition-colors">Work</a>
-            <a href="#about" className="hover:text-white transition-colors">About</a>
-            <a href="#services" className="hover:text-white transition-colors">Services</a>
-            <a href="#contact" className="hover:text-white transition-colors">Contact</a>
+            <a href="#work" className="transition-colors hover:text-white">Work</a>
+            <a href="#about" className="transition-colors hover:text-white">About</a>
+            <a href="#services" className="transition-colors hover:text-white">Services</a>
+            <a href="#contact" className="transition-colors hover:text-white">Contact</a>
           </nav>
         </div>
       </header>
@@ -114,15 +149,21 @@ export default function Home() {
             StillShot Studios creates refined portrait, lifestyle, event, and conceptual imagery for clients who want work that feels composed, intentional, and visually lasting.
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
-            <a href="#contact" className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-neutral-950 transition-transform hover:-translate-y-0.5">
+            <a
+              href="#contact"
+              className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-neutral-950 transition-transform hover:-translate-y-0.5"
+            >
               Book a session <ArrowRight className="h-4 w-4" />
             </a>
-            <a href="#work" className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/5 px-6 py-3 text-sm font-medium text-white/85 transition-colors hover:bg-white/10">
+            <a
+              href="#work"
+              className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/5 px-6 py-3 text-sm font-medium text-white/85 transition-colors hover:bg-white/10"
+            >
               View featured work <MoveUpRight className="h-4 w-4" />
             </a>
           </div>
           <div className="mt-10 grid max-w-2xl grid-cols-1 gap-4 sm:grid-cols-3">
-            {['Portraits', 'Lifestyle', 'Editorial'].map((item) => (
+            {['Portraits', 'Cityscapes', 'Editorial'].map((item) => (
               <div key={item} className="rounded-2xl border border-white/10 bg-white/[0.03] p-4 text-sm text-white/65">
                 {item}
               </div>
@@ -131,15 +172,13 @@ export default function Home() {
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2">
-          <PlaceholderFrame label="Hero image / studio signature frame" />
-          <div className="grid gap-4">
-            <PlaceholderFrame label="Supporting frame / vertical crop" />
-            <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-6">
-              <div className="text-xs uppercase tracking-[0.3em] text-white/40">Studio note</div>
-              <p className="mt-3 text-sm leading-7 text-white/70">
-                Built to feel editorial first: strong spacing, controlled palette, and image-led composition that makes the work feel elevated from the first scroll.
-              </p>
-            </div>
+          <MediaFrame image={heroMain} alt="Warm symmetrical corridor with repeating arches and hanging lights" label="Selected hero frame" priority className="sm:col-span-2 aspect-[16/11]" sizes="(max-width: 1024px) 100vw, 55vw" />
+          <MediaFrame image={heroSupport} alt="Close-up of splashing water against a textured surface" label="Motion frame" className="aspect-[4/5]" sizes="(max-width: 1024px) 50vw, 22vw" />
+          <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-6">
+            <div className="text-xs uppercase tracking-[0.3em] text-white/40">Studio note</div>
+            <p className="mt-3 text-sm leading-7 text-white/70">
+              Built from a small, curated set of local Instagram frames, so the homepage opens with real work instead of placeholders.
+            </p>
           </div>
         </div>
       </section>
@@ -150,14 +189,14 @@ export default function Home() {
             <div className="text-xs uppercase tracking-[0.35em] text-white/40">Featured work</div>
             <h2 className="mt-3 text-3xl font-semibold">A curated look at the studio’s visual range.</h2>
           </div>
-          <div className="hidden text-sm text-white/45 md:block">Structured to be replaced with real imagery later.</div>
+          <div className="hidden text-sm text-white/45 md:block">Selected from local Instagram downloads only.</div>
         </div>
 
         <div className="mt-8 grid gap-6 lg:grid-cols-2">
-          {featuredWork.map((item, index) => (
+          {featuredWork.map((item) => (
             <article key={item.title} className="group rounded-[2rem] border border-white/10 bg-white/[0.03] p-4 transition-transform hover:-translate-y-1">
               <div className="grid gap-4 lg:grid-cols-[1fr_0.95fr]">
-                <PlaceholderFrame label={`Featured work ${index + 1}`} />
+                <MediaFrame image={item.image} alt={item.alt} label={item.category} className="aspect-[4/5]" />
                 <div className="flex flex-col justify-between rounded-[1.5rem] bg-neutral-950/70 p-6">
                   <div>
                     <div className="text-xs uppercase tracking-[0.3em] text-amber-200/70">{item.category}</div>
@@ -199,11 +238,14 @@ export default function Home() {
             <div className="text-xs uppercase tracking-[0.3em] text-amber-200/70">Creative standards</div>
             <ul className="mt-4 space-y-3 text-sm leading-7 text-white/65">
               {principles.map((principle) => (
-                <li key={principle} className="flex gap-3"><span className="mt-2 h-1.5 w-1.5 rounded-full bg-amber-400" />{principle}</li>
+                <li key={principle} className="flex gap-3">
+                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-amber-400" />
+                  {principle}
+                </li>
               ))}
             </ul>
           </div>
-          <PlaceholderFrame label="Studio portrait / about image slot" />
+          <MediaFrame image={aboutPortrait} alt="Side-profile portrait of a smiling woman near a bright window" label="About / portrait frame" className="aspect-[4/5]" sizes="(max-width: 1024px) 50vw, 25vw" />
         </div>
       </section>
 
@@ -264,7 +306,7 @@ export default function Home() {
               <li>• A premium, low-friction experience</li>
             </ul>
           </div>
-          <PlaceholderFrame label="Credibility image slot / detail frame" />
+          <MediaFrame image={credibilityWall} alt="Two curving modern towers against a pale sky" label="Credibility / structure frame" className="aspect-[4/5]" sizes="(max-width: 1024px) 50vw, 25vw" />
         </div>
       </section>
 
@@ -282,7 +324,7 @@ export default function Home() {
               <a href="mailto:hello@stillshotstudios.com" className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-neutral-950">
                 <Mail className="h-4 w-4" /> Email
               </a>
-              <a href="#" className="inline-flex items-center justify-center gap-2 rounded-full border border-white/12 bg-white/5 px-6 py-3 text-sm font-medium text-white/85">
+              <a href="https://www.instagram.com/stillshotstudios/" className="inline-flex items-center justify-center gap-2 rounded-full border border-white/12 bg-white/5 px-6 py-3 text-sm font-medium text-white/85">
                 Instagram
               </a>
             </div>
