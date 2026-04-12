@@ -1,14 +1,16 @@
-import Image from 'next/image'
+import { InstagramFrame } from '../components/InstagramFrame'
 import { ArrowRight, Camera, ChevronRight, Grid3X3, Mail, MoveUpRight, Sparkles } from 'lucide-react'
 
-const heroMain = '/instagram/selected/BQ2JaUWgjc3.jpg'
-const heroSupport = '/instagram/selected/BQ6Sdb2gEF2.jpg'
-const work1 = '/instagram/selected/BQ_VofBg_kz.jpg'
-const work2 = '/instagram/selected/BQtQ0ZHA751.jpg'
-const work3 = '/instagram/selected/CDf6AFCBiEu.jpg'
-const work4 = '/instagram/selected/CTh4HfAl5NO.jpg'
-const aboutPortrait = '/instagram/selected/BSrKsPyAkzJ.jpg'
-const credibilityWall = '/instagram/selected/BSk2gcvAT3v.jpg'
+import {
+  aboutPortraitUrl,
+  credibilityWallUrl,
+  heroMainUrl,
+  heroSupportUrl,
+  work1Url,
+  work2Url,
+  work3Url,
+  work4Url,
+} from '../data/instagram/selected-images'
 
 type WorkItem = {
   title: string
@@ -25,7 +27,7 @@ const featuredWork: WorkItem[] = [
     category: 'Architecture',
     description: 'Low-angle facade work with strong verticals and a crisp editorial finish.',
     tone: 'Refined structure, clean lines, and controlled contrast.',
-    image: work1,
+    image: work1Url,
     alt: 'Tall modern skyscraper framed against the sky',
   },
   {
@@ -33,7 +35,7 @@ const featuredWork: WorkItem[] = [
     category: 'Landscapes',
     description: 'A warm sunset frame that brings atmosphere to the page without feeling heavy.',
     tone: 'Soft color transitions, reflective light, and a cinematic calm.',
-    image: work2,
+    image: work2Url,
     alt: 'Golden sunset over water with a glowing horizon',
   },
   {
@@ -41,7 +43,7 @@ const featuredWork: WorkItem[] = [
     category: 'City Nights',
     description: 'Bright night color and street energy, kept sharp and contemporary.',
     tone: 'Motion, contrast, and a modern nighttime palette.',
-    image: work3,
+    image: work3Url,
     alt: 'Neon-lit city street at night',
   },
   {
@@ -49,7 +51,7 @@ const featuredWork: WorkItem[] = [
     category: 'Cityscapes',
     description: 'Tall buildings and water reflections give the portfolio a more cinematic edge.',
     tone: 'Layered depth, bright points of light, and a polished urban mood.',
-    image: work4,
+    image: work4Url,
     alt: 'Night canal between tall buildings with reflections on the water',
   },
 ]
@@ -77,41 +79,6 @@ const principles = [
   'The studio experience is designed to feel calm, considered, and premium.',
   'Image sets are curated to feel cohesive across web, social, and print use cases.',
 ]
-
-function MediaFrame({
-  image,
-  alt,
-  label,
-  className = '',
-  priority = false,
-  sizes = '(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw',
-}: {
-  image: string
-  alt: string
-  label: string
-  className?: string
-  priority?: boolean
-  sizes?: string
-}) {
-  return (
-    <div className={`group relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] ${className}`}>
-      <Image
-        src={image}
-        alt={alt}
-        fill
-        priority={priority}
-        sizes={sizes}
-        className="object-cover transition duration-700 group-hover:scale-[1.03]"
-      />
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.02),rgba(0,0,0,0.42))]" />
-      <div className="absolute inset-x-0 bottom-0 p-5">
-        <div className="glass inline-flex rounded-2xl px-4 py-3 text-xs uppercase tracking-[0.28em] text-white/70">
-          {label}
-        </div>
-      </div>
-    </div>
-  )
-}
 
 export default function Home() {
   return (
@@ -172,8 +139,8 @@ export default function Home() {
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2">
-          <MediaFrame image={heroMain} alt="Warm symmetrical corridor with repeating arches and hanging lights" label="Selected hero frame" priority className="sm:col-span-2 aspect-[16/11]" sizes="(max-width: 1024px) 100vw, 55vw" />
-          <MediaFrame image={heroSupport} alt="Close-up of splashing water against a textured surface" label="Motion frame" className="aspect-[4/5]" sizes="(max-width: 1024px) 50vw, 22vw" />
+          <InstagramFrame image={heroMainUrl} alt="Warm symmetrical corridor with repeating arches and hanging lights" label="Selected hero frame" priority className="sm:col-span-2 aspect-[16/11]" />
+          <InstagramFrame image={heroSupportUrl} alt="Close-up of splashing water against a textured surface" label="Motion frame" className="aspect-[4/5]" />
           <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-6">
             <div className="text-xs uppercase tracking-[0.3em] text-white/40">Studio note</div>
             <p className="mt-3 text-sm leading-7 text-white/70">
@@ -196,7 +163,7 @@ export default function Home() {
           {featuredWork.map((item) => (
             <article key={item.title} className="group rounded-[2rem] border border-white/10 bg-white/[0.03] p-4 transition-transform hover:-translate-y-1">
               <div className="grid gap-4 lg:grid-cols-[1fr_0.95fr]">
-                <MediaFrame image={item.image} alt={item.alt} label={item.category} className="aspect-[4/5]" />
+                <InstagramFrame image={item.image} alt={item.alt} label={item.category} className="aspect-[4/5]" />
                 <div className="flex flex-col justify-between rounded-[1.5rem] bg-neutral-950/70 p-6">
                   <div>
                     <div className="text-xs uppercase tracking-[0.3em] text-amber-200/70">{item.category}</div>
@@ -245,7 +212,7 @@ export default function Home() {
               ))}
             </ul>
           </div>
-          <MediaFrame image={aboutPortrait} alt="Side-profile portrait of a smiling woman near a bright window" label="About / portrait frame" className="aspect-[4/5]" sizes="(max-width: 1024px) 50vw, 25vw" />
+          <InstagramFrame image={aboutPortraitUrl} alt="Side-profile portrait of a smiling woman near a bright window" label="About / portrait frame" className="aspect-[4/5]" />
         </div>
       </section>
 
@@ -306,7 +273,7 @@ export default function Home() {
               <li>• A premium, low-friction experience</li>
             </ul>
           </div>
-          <MediaFrame image={credibilityWall} alt="Two curving modern towers against a pale sky" label="Credibility / structure frame" className="aspect-[4/5]" sizes="(max-width: 1024px) 50vw, 25vw" />
+          <InstagramFrame image={credibilityWallUrl} alt="Two curving modern towers against a pale sky" label="Credibility / structure frame" className="aspect-[4/5]" />
         </div>
       </section>
 
