@@ -1,21 +1,21 @@
-import Image, { type StaticImageData } from 'next/image'
+import Image from 'next/image'
 import { ArrowRight, Camera, ChevronRight, Grid3X3, Mail, MoveUpRight, Sparkles } from 'lucide-react'
 
-import heroMain from '../data/instagram/Data/BQ2JaUWgjc3.jpg'
-import heroSupport from '../data/instagram/Data/BQ6Sdb2gEF2.jpg'
-import work1 from '../data/instagram/Data/BQ_VofBg_kz.jpg'
-import work2 from '../data/instagram/Data/BQtQ0ZHA751.jpg'
-import work3 from '../data/instagram/Data/CDf6AFCBiEu.jpg'
-import work4 from '../data/instagram/Data/CTh4HfAl5NO.jpg'
-import aboutPortrait from '../data/instagram/Data/BSrKsPyAkzJ.jpg'
-import credibilityWall from '../data/instagram/Data/BSk2gcvAT3v.jpg'
+const heroMain = '/instagram/selected/BQ2JaUWgjc3.jpg'
+const heroSupport = '/instagram/selected/BQ6Sdb2gEF2.jpg'
+const work1 = '/instagram/selected/BQ_VofBg_kz.jpg'
+const work2 = '/instagram/selected/BQtQ0ZHA751.jpg'
+const work3 = '/instagram/selected/CDf6AFCBiEu.jpg'
+const work4 = '/instagram/selected/CTh4HfAl5NO.jpg'
+const aboutPortrait = '/instagram/selected/BSrKsPyAkzJ.jpg'
+const credibilityWall = '/instagram/selected/BSk2gcvAT3v.jpg'
 
 type WorkItem = {
   title: string
   category: string
   description: string
   tone: string
-  image: StaticImageData
+  image: string
   alt: string
 }
 
@@ -86,7 +86,7 @@ function MediaFrame({
   priority = false,
   sizes = '(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw',
 }: {
-  image: StaticImageData
+  image: string
   alt: string
   label: string
   className?: string
