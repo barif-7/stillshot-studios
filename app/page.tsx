@@ -1,84 +1,14 @@
+import Link from 'next/link'
 import { InstagramFrame } from '../components/InstagramFrame'
-import { ArrowRight, Camera, ChevronRight, Grid3X3, Mail, MoveUpRight, Sparkles } from 'lucide-react'
-
+import { InquiryForm } from '../components/InquiryForm'
+import { ArrowRight, Camera, Grid3X3, Mail, MoveUpRight, ShoppingBag, Sparkles } from 'lucide-react'
+import { acceptedWork, expectations, featuredWork, process, services } from '../data/site-content'
 import {
   aboutPortraitUrl,
   credibilityWallUrl,
   heroMainUrl,
   heroSupportUrl,
-  work1Url,
-  work2Url,
-  work3Url,
-  work4Url,
 } from '../data/instagram/selected-images'
-
-type WorkItem = {
-  title: string
-  category: string
-  description: string
-  tone: string
-  image: string
-  alt: string
-}
-
-const featuredWork: WorkItem[] = [
-  {
-    title: 'Tower Geometry',
-    category: 'Architecture',
-    description: 'Low-angle facade work with strong verticals and a crisp editorial finish.',
-    tone: 'Refined structure, clean lines, and controlled contrast.',
-    image: work1Url,
-    alt: 'Tall modern skyscraper framed against the sky',
-  },
-  {
-    title: 'Golden Horizon',
-    category: 'Landscapes',
-    description: 'A warm sunset frame that brings atmosphere to the page without feeling heavy.',
-    tone: 'Soft color transitions, reflective light, and a cinematic calm.',
-    image: work2Url,
-    alt: 'Golden sunset over water with a glowing horizon',
-  },
-  {
-    title: 'Neon Street',
-    category: 'City Nights',
-    description: 'Bright night color and street energy, kept sharp and contemporary.',
-    tone: 'Motion, contrast, and a modern nighttime palette.',
-    image: work3Url,
-    alt: 'Neon-lit city street at night',
-  },
-  {
-    title: 'Night Canal',
-    category: 'Cityscapes',
-    description: 'Tall buildings and water reflections give the portfolio a more cinematic edge.',
-    tone: 'Layered depth, bright points of light, and a polished urban mood.',
-    image: work4Url,
-    alt: 'Night canal between tall buildings with reflections on the water',
-  },
-]
-
-const collections = ['Architecture', 'Cityscapes', 'Editorial', 'Portraits', 'Landscapes']
-
-const services = [
-  'Portrait Sessions',
-  'Brand and Lifestyle Shoots',
-  'Event Coverage',
-  'Creative Direction',
-  'Custom Visual Projects',
-]
-
-const process = [
-  'Discovery and visual alignment',
-  'Shot planning, mood, and location direction',
-  'Production with calm, precise execution',
-  'Curation and delivery with a polished finish',
-]
-
-const principles = [
-  'Every project starts with visual clarity, not volume.',
-  'Lighting, composition, and editing are treated as part of the same language.',
-  'The studio experience is designed to feel calm, considered, and premium.',
-  'Image sets are curated to feel cohesive across web, social, and print use cases.',
-]
 
 export default function Home() {
   return (
@@ -98,6 +28,7 @@ export default function Home() {
             <a href="#work" className="transition-colors hover:text-white">Work</a>
             <a href="#about" className="transition-colors hover:text-white">About</a>
             <a href="#services" className="transition-colors hover:text-white">Services</a>
+            <Link href="/store" className="transition-colors hover:text-white">Store</Link>
             <a href="#contact" className="transition-colors hover:text-white">Contact</a>
           </nav>
         </div>
@@ -117,20 +48,26 @@ export default function Home() {
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
             <a
-              href="#contact"
+              href="#work"
               className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-neutral-950 transition-transform hover:-translate-y-0.5"
             >
-              Book a session <ArrowRight className="h-4 w-4" />
+              View work <MoveUpRight className="h-4 w-4" />
             </a>
+            <Link
+              href="/store"
+              className="inline-flex items-center gap-2 rounded-full border border-amber-400/20 bg-amber-400/10 px-6 py-3 text-sm font-medium text-amber-100 transition-colors hover:bg-amber-400/20"
+            >
+              Shop prints <ShoppingBag className="h-4 w-4" />
+            </Link>
             <a
-              href="#work"
+              href="#contact"
               className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/5 px-6 py-3 text-sm font-medium text-white/85 transition-colors hover:bg-white/10"
             >
-              View featured work <MoveUpRight className="h-4 w-4" />
+              Start inquiry <ArrowRight className="h-4 w-4" />
             </a>
           </div>
           <div className="mt-10 grid max-w-2xl grid-cols-1 gap-4 sm:grid-cols-3">
-            {['Portraits', 'Cityscapes', 'Editorial'].map((item) => (
+            {acceptedWork.slice(0, 3).map((item) => (
               <div key={item} className="rounded-2xl border border-white/10 bg-white/[0.03] p-4 text-sm text-white/65">
                 {item}
               </div>
@@ -144,7 +81,7 @@ export default function Home() {
           <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-6">
             <div className="text-xs uppercase tracking-[0.3em] text-white/40">Studio note</div>
             <p className="mt-3 text-sm leading-7 text-white/70">
-              Built from a small, curated set of local Instagram frames, so the homepage opens with real work instead of placeholders.
+              Built from a small, curated set of local frames, so the homepage opens with real work instead of placeholders.
             </p>
           </div>
         </div>
@@ -156,7 +93,7 @@ export default function Home() {
             <div className="text-xs uppercase tracking-[0.35em] text-white/40">Featured work</div>
             <h2 className="mt-3 text-3xl font-semibold">A curated look at the studio’s visual range.</h2>
           </div>
-          <div className="hidden text-sm text-white/45 md:block">Selected from local Instagram downloads only.</div>
+          <div className="hidden text-sm text-white/45 md:block">Selected from local assets only.</div>
         </div>
 
         <div className="mt-8 grid gap-6 lg:grid-cols-2">
@@ -184,7 +121,7 @@ export default function Home() {
           <div className="text-xs uppercase tracking-[0.35em] text-white/40">Collections</div>
         </div>
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-          {collections.map((collection) => (
+          {acceptedWork.map((collection) => (
             <div key={collection} className="rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4 text-sm text-white/75 transition-colors hover:bg-white/[0.06]">
               {collection}
             </div>
@@ -204,7 +141,7 @@ export default function Home() {
           <div className="rounded-[1.75rem] border border-white/10 bg-white/[0.03] p-6">
             <div className="text-xs uppercase tracking-[0.3em] text-amber-200/70">Creative standards</div>
             <ul className="mt-4 space-y-3 text-sm leading-7 text-white/65">
-              {principles.map((principle) => (
+              {expectations.map((principle) => (
                 <li key={principle} className="flex gap-3">
                   <span className="mt-2 h-1.5 w-1.5 rounded-full bg-amber-400" />
                   {principle}
@@ -226,15 +163,13 @@ export default function Home() {
             </p>
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
-            {services.map((service) => (
-              <div key={service} className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-6 transition-colors hover:bg-white/[0.06]">
+            {services.map((service, index) => (
+              <div key={service.title} className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-6 transition-colors hover:bg-white/[0.06]">
                 <div className="flex items-center justify-between gap-4">
-                  <h3 className="text-lg font-medium">{service}</h3>
-                  <ChevronRight className="h-4 w-4 text-white/35" />
+                  <h3 className="text-lg font-medium">{service.title}</h3>
+                  <span className="text-xs uppercase tracking-[0.3em] text-white/35">{String(index + 1).padStart(2, '0')}</span>
                 </div>
-                <p className="mt-3 text-sm leading-7 text-white/58">
-                  Tailored to the subject, setting, and mood so the final image set feels cohesive and ready to present.
-                </p>
+                <p className="mt-3 text-sm leading-7 text-white/58">{service.description}</p>
               </div>
             ))}
           </div>
@@ -247,7 +182,7 @@ export default function Home() {
           <div className="mt-4 grid gap-4 lg:grid-cols-4">
             {process.map((step, index) => (
               <div key={step} className="rounded-2xl border border-white/10 bg-neutral-950/55 p-5">
-                <div className="text-xs uppercase tracking-[0.3em] text-amber-200/70">0{index + 1}</div>
+                <div className="text-xs uppercase tracking-[0.3em] text-amber-200/70">{String(index + 1).padStart(2, '0')}</div>
                 <h3 className="mt-3 text-base font-medium">{step}</h3>
               </div>
             ))}
@@ -267,10 +202,7 @@ export default function Home() {
           <div className="rounded-[1.75rem] border border-white/10 bg-white/[0.03] p-6">
             <div className="text-sm font-medium">What clients can expect</div>
             <ul className="mt-4 space-y-3 text-sm leading-7 text-white/62">
-              <li>• Clear planning before the shoot</li>
-              <li>• Calm on-set direction</li>
-              <li>• Refined curation and finishing</li>
-              <li>• A premium, low-friction experience</li>
+              {expectations.map((item) => <li key={item}>• {item}</li>)}
             </ul>
           </div>
           <InstagramFrame image={credibilityWallUrl} alt="Two curving modern towers against a pale sky" label="Credibility / structure frame" className="aspect-[4/5]" />
@@ -284,15 +216,13 @@ export default function Home() {
               <div className="text-xs uppercase tracking-[0.35em] text-white/40">Contact / booking</div>
               <h2 className="mt-3 text-3xl font-semibold">Ready to shape the next set of images?</h2>
               <p className="mt-5 max-w-2xl text-base leading-8 text-white/65">
-                Reach out to discuss portraits, brand work, event coverage, or a custom concept. Replace the placeholders below with your preferred contact details when you’re ready.
+                Reach out to discuss portraits, brand work, event coverage, or a custom concept. We’ll reply with a clear next step and timing.
               </p>
             </div>
-            <div className="flex flex-col gap-4 sm:flex-row lg:justify-end">
-              <a href="mailto:hello@stillshotstudios.com" className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-neutral-950">
-                <Mail className="h-4 w-4" /> Email
-              </a>
-              <a href="https://www.instagram.com/stillshotstudios/" className="inline-flex items-center justify-center gap-2 rounded-full border border-white/12 bg-white/5 px-6 py-3 text-sm font-medium text-white/85">
-                Instagram
+            <div className="grid gap-4">
+              <InquiryForm />
+              <a href="mailto:hello@stillshotstudios.com" className="inline-flex items-center justify-center gap-2 rounded-full border border-white/12 bg-white/5 px-6 py-3 text-sm font-medium text-white/85">
+                <Mail className="h-4 w-4" /> Prefer email only
               </a>
             </div>
           </div>
