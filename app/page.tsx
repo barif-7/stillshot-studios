@@ -3,12 +3,6 @@ import { InstagramFrame } from '../components/InstagramFrame'
 import { InquiryForm } from '../components/InquiryForm'
 import { ArrowRight, Camera, Grid3X3, Mail, MoveUpRight, ShoppingBag, Sparkles } from 'lucide-react'
 import { acceptedWork, expectations, featuredWork, process, services } from '../data/site-content'
-import {
-  aboutPortraitUrl,
-  credibilityWallUrl,
-  heroMainUrl,
-  heroSupportUrl,
-} from '../data/instagram/selected-images'
 
 export default function Home() {
   return (
@@ -76,8 +70,8 @@ export default function Home() {
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2">
-          <InstagramFrame image={heroMainUrl} alt="Warm symmetrical corridor with repeating arches and hanging lights" label="Selected hero frame" priority className="sm:col-span-2 aspect-[16/11]" />
-          <InstagramFrame image={heroSupportUrl} alt="Close-up of splashing water against a textured surface" label="Motion frame" className="aspect-[4/5]" />
+          <InstagramFrame imageKey="heroMain" alt="Warm symmetrical corridor with repeating arches and hanging lights" label="Selected hero frame" priority className="sm:col-span-2 aspect-[16/11]" />
+          <InstagramFrame imageKey="heroSupport" alt="Close-up of splashing water against a textured surface" label="Motion frame" className="aspect-[4/5]" />
           <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-6">
             <div className="text-xs uppercase tracking-[0.3em] text-white/40">Studio note</div>
             <p className="mt-3 text-sm leading-7 text-white/70">
@@ -100,7 +94,7 @@ export default function Home() {
           {featuredWork.map((item) => (
             <article key={item.title} className="group rounded-[2rem] border border-white/10 bg-white/[0.03] p-4 transition-transform hover:-translate-y-1">
               <div className="grid gap-4 lg:grid-cols-[1fr_0.95fr]">
-                <InstagramFrame image={item.image} alt={item.alt} label={item.category} className="aspect-[4/5]" />
+                <InstagramFrame imageKey={item.imageKey} alt={item.alt} label={item.category} className="aspect-[4/5]" />
                 <div className="flex flex-col justify-between rounded-[1.5rem] bg-neutral-950/70 p-6">
                   <div>
                     <div className="text-xs uppercase tracking-[0.3em] text-amber-200/70">{item.category}</div>
@@ -149,7 +143,7 @@ export default function Home() {
               ))}
             </ul>
           </div>
-          <InstagramFrame image={aboutPortraitUrl} alt="Side-profile portrait of a smiling woman near a bright window" label="About / portrait frame" className="aspect-[4/5]" />
+          <InstagramFrame imageKey="aboutPortrait" alt="Side-profile portrait of a smiling woman near a bright window" label="About / portrait frame" className="aspect-[4/5]" />
         </div>
       </section>
 
@@ -205,7 +199,7 @@ export default function Home() {
               {expectations.map((item) => <li key={item}>• {item}</li>)}
             </ul>
           </div>
-          <InstagramFrame image={credibilityWallUrl} alt="Two curving modern towers against a pale sky" label="Credibility / structure frame" className="aspect-[4/5]" />
+          <InstagramFrame imageKey="credibilityWall" alt="Two curving modern towers against a pale sky" label="Credibility / structure frame" className="aspect-[4/5]" />
         </div>
       </section>
 

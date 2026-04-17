@@ -1,10 +1,10 @@
-import { work1Url, work2Url, work3Url, work4Url } from './instagram/selected-images'
+import type { InstagramImageKey } from './instagram/selected-images'
 
 export type PrintProduct = {
   title: string
   category: string
   description: string
-  image: string
+  imageKey: InstagramImageKey
   alt: string
   price: string
   sizes: string[]
@@ -17,7 +17,7 @@ export const printProducts: PrintProduct[] = [
     title: 'Tower Geometry',
     category: 'Architecture print',
     description: 'Clean verticals and precise contrast make this a strong centerpiece for a home office or studio wall.',
-    image: work1Url,
+    imageKey: 'work1',
     alt: 'Tall modern skyscraper framed against the sky',
     price: 'From $85',
     sizes: ['8x10', '12x18', '20x30'],
@@ -28,7 +28,7 @@ export const printProducts: PrintProduct[] = [
     title: 'Golden Horizon',
     category: 'Landscape print',
     description: 'A warm, atmospheric frame that works well as a quiet focal point in living spaces.',
-    image: work2Url,
+    imageKey: 'work2',
     alt: 'Golden sunset over water with a glowing horizon',
     price: 'From $95',
     sizes: ['8x10', '12x18', '24x36'],
@@ -39,7 +39,7 @@ export const printProducts: PrintProduct[] = [
     title: 'Neon Street',
     category: 'Night city print',
     description: 'Bold color and street energy, kept sharp so it still feels premium when printed large.',
-    image: work3Url,
+    imageKey: 'work3',
     alt: 'Neon-lit city street at night',
     price: 'From $110',
     sizes: ['11x14', '16x24', '20x30'],
@@ -50,7 +50,7 @@ export const printProducts: PrintProduct[] = [
     title: 'Night Canal',
     category: 'Cityscape print',
     description: 'Reflections and depth give this image a more cinematic tone on paper.',
-    image: work4Url,
+    imageKey: 'work4',
     alt: 'Night canal between tall buildings with reflections on the water',
     price: 'From $110',
     sizes: ['11x14', '16x24', '24x36'],

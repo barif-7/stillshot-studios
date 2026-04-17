@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { ArrowRight, Camera, Check, Mail, Package, ShoppingBag, Sparkles } from 'lucide-react'
 import { InstagramFrame } from '../../components/InstagramFrame'
-import { heroMainUrl, heroSupportUrl } from '../../data/instagram/selected-images'
 import { printProducts, printSteps, storeHighlights } from '../../data/store-content'
 
 export const metadata = {
@@ -74,8 +73,8 @@ export default function StorePage() {
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2">
-          <InstagramFrame image={heroMainUrl} alt="Warm symmetrical corridor with repeating arches and hanging lights" label="Signature print preview" priority className="sm:col-span-2 aspect-[16/11]" />
-          <InstagramFrame image={heroSupportUrl} alt="Close-up of splashing water against a textured surface" label="Paper texture study" className="aspect-[4/5]" />
+          <InstagramFrame imageKey="heroMain" alt="Warm symmetrical corridor with repeating arches and hanging lights" label="Signature print preview" priority className="sm:col-span-2 aspect-[16/11]" />
+          <InstagramFrame imageKey="heroSupport" alt="Close-up of splashing water against a textured surface" label="Paper texture study" className="aspect-[4/5]" />
           <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-6">
             <div className="text-xs uppercase tracking-[0.3em] text-white/40">Order flow</div>
             <div className="mt-4 space-y-3 text-sm leading-7 text-white/70">
@@ -105,7 +104,7 @@ export default function StorePage() {
           {printProducts.map((product) => (
             <article key={product.title} className="group rounded-[2rem] border border-white/10 bg-white/[0.03] p-4 transition-transform hover:-translate-y-1">
               <div className="grid gap-4 lg:grid-cols-[1fr_0.92fr]">
-                <InstagramFrame image={product.image} alt={product.alt} label={product.category} className="aspect-[4/5]" />
+                <InstagramFrame imageKey={product.imageKey} alt={product.alt} label={product.category} className="aspect-[4/5]" />
                 <div className="flex flex-col justify-between rounded-[1.5rem] bg-neutral-950/70 p-6">
                   <div>
                     <div className="text-xs uppercase tracking-[0.3em] text-amber-200/70">{product.category}</div>
@@ -154,7 +153,7 @@ export default function StorePage() {
               <li>Custom sizing quotes available</li>
             </ul>
           </div>
-          <InstagramFrame image={heroSupportUrl} alt="Close-up of splashing water against a textured surface" label="Detail / texture" className="aspect-[4/5]" />
+          <InstagramFrame imageKey="heroSupport" alt="Close-up of splashing water against a textured surface" label="Detail / texture" className="aspect-[4/5]" />
         </div>
       </section>
 

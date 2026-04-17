@@ -1,17 +1,21 @@
-import {
-  work1Url,
-  work2Url,
-  work3Url,
-  work4Url,
-} from './instagram/selected-images'
+import type { InstagramImageKey } from './instagram/selected-images'
 
-export const featuredWork = [
+type FeaturedWorkItem = {
+  title: string
+  category: string
+  description: string
+  tone: string
+  imageKey: InstagramImageKey
+  alt: string
+}
+
+export const featuredWork: FeaturedWorkItem[] = [
   {
     title: 'Tower Geometry',
     category: 'Architecture',
     description: 'Low-angle facade work with strong verticals and a crisp editorial finish.',
     tone: 'Refined structure, clean lines, and controlled contrast.',
-    image: work1Url,
+    imageKey: 'work1',
     alt: 'Tall modern skyscraper framed against the sky',
   },
   {
@@ -19,7 +23,7 @@ export const featuredWork = [
     category: 'Landscapes',
     description: 'A warm sunset frame that brings atmosphere to the page without feeling heavy.',
     tone: 'Soft color transitions, reflective light, and a cinematic calm.',
-    image: work2Url,
+    imageKey: 'work2',
     alt: 'Golden sunset over water with a glowing horizon',
   },
   {
@@ -27,7 +31,7 @@ export const featuredWork = [
     category: 'City Nights',
     description: 'Bright night color and street energy, kept sharp and contemporary.',
     tone: 'Motion, contrast, and a modern nighttime palette.',
-    image: work3Url,
+    imageKey: 'work3',
     alt: 'Neon-lit city street at night',
   },
   {
@@ -35,7 +39,7 @@ export const featuredWork = [
     category: 'Cityscapes',
     description: 'Tall buildings and water reflections give the portfolio a more cinematic edge.',
     tone: 'Layered depth, bright points of light, and a polished urban mood.',
-    image: work4Url,
+    imageKey: 'work4',
     alt: 'Night canal between tall buildings with reflections on the water',
   },
 ]
